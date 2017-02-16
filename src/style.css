@@ -1,3 +1,28 @@
 body {
     background-image: url(img/dentist-background.png);
 }
+
+#login {
+    padding-top: 35vh;
+}
+
+#password {
+    margin-top: 10px;
+}
+
+.form-control {
+    padding: 20px;
+}
+
+#sub {
+    width: 45%;
+    margin-top: 10px;
+    position: absolute;
+}
+
+#reg {
+    width: 45%;
+    margin-left: 47%;
+    margin-top: 10px;
+    position: absolute;
+}
