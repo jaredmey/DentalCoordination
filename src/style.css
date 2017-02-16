@@ -1,9 +1,10 @@
 body {
-    background-image: url(img/dentist-background.png);
+    background-image: url(  img/dentist-background.png);
+    background-position: 0 -70px;
 }
 
 #login {
-    padding-top: 35vh;
+    padding-top: 20vh;
 }
 
 #password {
@@ -12,6 +13,13 @@ body {
 
 .form-control {
     padding: 20px;
+}
+
+.jem-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
 }
 
 #sub {
