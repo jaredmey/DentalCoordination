@@ -44,12 +44,22 @@ body {
     position: absolute;
 }
 
-#switchTab {
+#registerTab {
     font-size: 18px;
     width: 45%;
     height: 20%;
     margin-left: 47%;
     margin-top: 10px;
     padding-bottom: 55px;
+    position: absolute;
+}
+
+#loginTab {
+    font-size: 18px;
+    width: 45%;
+    height: 20%;
+    margin-left: 47%;
+    margin-top: 10px;
+    padding-bottom: 10px;
     position: absolute;
 }
