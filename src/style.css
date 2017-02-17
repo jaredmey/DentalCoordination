@@ -3,8 +3,16 @@ body {
     background-position: 0 -70px;
 }
 
+.account-wall-register {
+    display: none;
+}
+
 #login {
     padding-top: 20vh;
+}
+
+#username {
+    margin-top: 10px;
 }
 
 #password {
@@ -30,6 +38,13 @@ body {
 }
 
 #reg {
+    width: 45%;
+    height: 20%;
+    margin-top: 10px;
+    position: absolute;
+}
+
+#switchTab {
     font-size: 18px;
     width: 45%;
     height: 20%;
