@@ -1,4 +1,4 @@
-@import "compass/css3";
+@import "/css3";
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -8,9 +8,8 @@ html {
 	overflow-y: scroll; 
 }
 
-body {
-    
-  background:#c1bdba;
+body { 
+  background: url(img/dentist-background.png);
   font-family: 'Titillium Web', sans-serif;
 }
 
@@ -25,12 +24,13 @@ a {
 
 .form {
     
-  background:rgba(#13232f,.9);
+  background: #13232f;
   padding: 40px;
   max-width:600px;
   margin:40px auto;
   border-radius:4px;
   box-shadow:0 4px 10px 4px rgba(#13232f,.3);
+    
 }
 
 .tab-group {
@@ -72,7 +72,7 @@ a {
 
 h1 {
   text-align:center;
-  color:$white;
+  color: #FFFFFF;
   font-weight:300;
   margin:0 0 40px;
 }
@@ -160,7 +160,7 @@ textarea {
   text-transform:uppercase;
   letter-spacing:.1em;
   background:#1ab188;
-  color:$white;
+  color: #FFFFFF;
   transition:all.5s ease;
   -webkit-appearance: none;
   &:hover, &:focus {
@@ -169,6 +169,7 @@ textarea {
 }
 
 .button-block {
+  color: #FFFFFF;
   display:block;
   width:100%;
 }
