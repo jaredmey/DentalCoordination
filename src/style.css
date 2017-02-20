@@ -1,3 +1,65 @@
 body {
-    background-image: url(img/dentist-background.png);
+    background-image: url(  img/dentist-background.png);
+    background-position: 0 -70px;
+}
+
+.account-wall-register {
+    display: none;
+}
+
+#login {
+    padding-top: 20vh;
+}
+
+#username {
+    margin-top: 10px;
+}
+
+#password {
+    margin-top: 10px;
+}
+
+.form-control {
+    padding: 20px;
+}
+
+.jem-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+#sub {
+    width: 45%;
+    height: 27%;
+    margin-top: 10px;
+    position: absolute;
+}
+
+#reg {
+    width: 45%;
+    height: 20%;
+    margin-top: 10px;
+    position: absolute;
+}
+
+#registerTab {
+    font-size: 18px;
+    width: 45%;
+    height: 20%;
+    margin-left: 47%;
+    margin-top: 10px;
+    padding-bottom: 55px;
+    position: absolute;
+}
+
+#loginTab {
+    font-size: 18px;
+    width: 45%;
+    height: 20%;
+    margin-left: 47%;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    position: absolute;
 }
