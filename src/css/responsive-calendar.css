@@ -1,3 +1,15 @@
+.container {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-top: 20px;
+}
+
+.calendar-page-icon {
+    height: 40px;
+    padding-top: 10px;
+}
+
 .responsive-calendar .controls {
   text-align: center;
 }
