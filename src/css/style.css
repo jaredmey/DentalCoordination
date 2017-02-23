@@ -7,8 +7,19 @@ body {
     display: none;
 }
 
-#login {
-    padding-top: 20vh;
+.navbar {
+    background-color: transparent;
+    background: transparent;
+    border-color: transparent;
+}
+
+.nav li {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.container {
+    padding-top: 10vh;
 }
 
 #username {
