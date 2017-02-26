@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     $Username = $_POST['username'];
     $Password = $_POST['password'];
     
-    $sql = "INSERT INTO users (email, name, username, password) VALUES ('$Email', '$Name', '$Username', '$Password')";
+    $sql = "INSERT INTO `Users` (`email`, `name`, `username`, `password`) VALUES ('$Email', '$Name', '$Username', '$Password')";
     
     mysql_query($sql, $con);
     
