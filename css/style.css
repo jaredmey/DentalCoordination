@@ -7,6 +7,9 @@ body {
     display: none;
 }
 
+.appointTab {
+    text-align:center;
+}
 .navbar {
     background-color: transparent;
     background: transparent;
