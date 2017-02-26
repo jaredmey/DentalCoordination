@@ -1,22 +1,21 @@
 <?php
 if (isset($_POST['submit'])) {
     
-    $con = mysql_connect("localhost", "root", "twister123");
-    if (!$con) {
-        die("Can not connect: " . mysql_error());
-    }
+    $mysqli = mysqli_connect("localhost", "user", "password", "JEMDental");
     
-    mysql_select_db("JEMDental", $con);
+    if ($mysqli->connect_errno) {
+        echo 'Cannot connect to server';
+    }
     
     $Email = $_POST['email'];
     $Name = $_POST['name'];
     $Username = $_POST['username'];
     $Password = $_POST['password'];
     
-    $sql = "INSERT INTO `Users` (`email`, `name`, `username`, `password`) VALUES ('$Email', '$Name', '$Username', '$Password')";
+    $sql = "INSERT INTO `Users` (`Name`, `Email`, `Username`, `Password`) VALUES ('$Name', '$Email', '$Username', '$Password')";
     
-    mysql_query($sql, $con);
+    mysqli_query($mysqli, $sql);
     
-    mysql_close($con);
+    mysqli_close($mysqli);
 }
 ?>
