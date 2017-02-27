@@ -7,13 +7,10 @@ function openLoginTab(event) {
     document.querySelector('.account-wall-register').style.display = "none";
     document.querySelector('.account-wall-login').style.display = "inline";
 }
-//changes what happens on the submit
 
 
-$('#logInForm').submit(function(){
-    logIn();
-    return false;
-});
+
+//this fuction is in place of the submit button. Change button to type submit after
 function logIn(){    
     var username=$("#username").val();
     console.log(username);
@@ -24,12 +21,12 @@ function logIn(){
     }
     //JaneDoe account
     if((username === "JaneDoe") && (password === "JaneDoe")){
-        window.location.href = "DentalCoordination/appointment_form.html";
+        window.location = "appointment_form.html";
         console.log("In JD account");
     }
     //Doctor Dan
     if((username === "DoctorDan") && (password === "DoctorDan")){
-        window.location.href = "DentalCoordination/employee_schedule.html";
+        window.location = "employee_schedule.html";
     }
     
 }
