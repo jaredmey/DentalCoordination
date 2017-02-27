@@ -17,12 +17,14 @@ function logIn(){
     var password=$("#password").val();
     //admin account
     if((username === "Admin") && (password === "Admin")){
+        //I spelled calendar wrong lol
+        window.location = "calender.html";
         
     }
     //JaneDoe account
     if((username === "JaneDoe") && (password === "JaneDoe")){
         window.location = "appointment_form.html";
-        console.log("In JD account");
+        
     }
     //Doctor Dan
     if((username === "DoctorDan") && (password === "DoctorDan")){
