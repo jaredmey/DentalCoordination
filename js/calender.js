@@ -5,6 +5,7 @@ function populateCalendar(){
     
     //use for loop to append all times in day
     //grab from server
+    //add table header before loop with same format
     list.append(
     '<tr>' +
         //add data in td's
@@ -15,7 +16,7 @@ function populateCalendar(){
     '</tr>'
     );
 }
-//use this method to delete the displayed calender before populating
+//use this method to delete the displayed calender before populating with populateCalendar
 function removeCalendarRows(){
     var list =document.getElementById("calendarTable");
     while(list.hasChildNodes()){
