@@ -37,9 +37,9 @@
                     <img class="jem-logo" src="img/jem-dental-logo.png" width="80" height="80"></img>
                         <div class="account-wall-login">
                             <form id="logInForm" class="form-signin" action="loginUser.php" method="post">
-                                <input id="username" type="text" class="form-control" placeholder="Username" required autofocus>
-                                <input id="password" type="password" class="form-control" placeholder="Password" required>
-                                <button onclick="logIn();"id="sub" class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
+                                <input id="username" name="username" type="text" class="form-control" placeholder="Username" required autofocus>
+                                <input id="password" name="password" type="password" class="form-control" placeholder="Password" required>
+                                <button id="sub" class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Sign in</button>
                             </form>
                                 <button id="registerTab" class="btn btn-lg btn-primary btn-block" type="submit"                                                           onclick="openRegisterTab()">New user?<br>Register here!</button>
                         </div>
