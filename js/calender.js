@@ -1,3 +1,4 @@
+//use this funciton after button press to populate table based on emplyee / day / time constrints
 function populateCalendar(){
     var list=$("table#calendarTable");
     
@@ -13,4 +14,11 @@ function populateCalendar(){
         '<td>' + '</td>' +
     '</tr>'
     );
+}
+//use this method to delete the displayed calender before populating
+function removeCalendarRows(){
+    var list =document.getElementById("calendarTable");
+    while(list.hasChildNodes()){
+        list.removeChild(list.lastChild);
+    }
 }
