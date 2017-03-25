@@ -1,14 +1,9 @@
 <html>
     <head>
         <title>JEM Scheduling</title>
-        <link rel="stylesheet"href="styles/kendo.common.min.css"/>
-        <link rel="stylesheet" href="styles/kendo.default.min.css" />
-        <script src="js/jquery.min.js"></script>
-        <script src="js/kendo.all.min.js"></script>
         <script src="js/jquery.js"></script>
-        <script src="js/responsive-calendar.js"></script>
+        <script src="js/calender.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/responsive-calendar.css" rel="stylesheet" media="screen">
     </head>
     <body>
         <nav class="navbar navbar-inverse">
@@ -28,6 +23,7 @@
           </div>
         </nav>
         <div id="calendarSelectors" class="container">
+            <div onclick="findAppointments()" id="findAppt" class="btn btn-lg btn-primary">See Appointments</div>
         </div>
         <div id="calendar" class="container">
             <table id="calendarTable" class="table"></table>
