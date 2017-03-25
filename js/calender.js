@@ -1,7 +1,4 @@
-
-
-
-//use this funciton after button press to populate table based on emplyee / day / time constrints
+//use this function after button press to populate table based on employee / day / time constrints
 //this functions takes a parameter of the time of the added appointment
 
 var timeslots = [8,9,10,11,12,1,2,3,4]
@@ -25,7 +22,7 @@ function populateCalendar(){
             //else
             var time;
             //Show am or pm
-            if (timeslots[i]>=4){
+            if (timeslots[i]>4){
                 time = timeslots[i]+":00 AM"
             }
             else{
@@ -61,7 +58,7 @@ function findAppointments(){
 function addAppointment(time){
     //this grabs the row of the button pressed
     var row=document.getElementById(""+time)
-    //examlpe on how to change data
-    row.firstChild.textContent="HIIII"
+    //example on how to change data
+    row.firstChild.nextSibling.textContent="Not Available"
     //send this appt details to server
 }
