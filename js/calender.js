@@ -1,4 +1,7 @@
+
 //use this funciton after button press to populate table based on emplyee / day / time constrints
+//this functions takes a parameter of the time of the added appointment
+
 function populateCalendar(){
     var list=$("table#calendarTable");
     //table header
@@ -17,10 +20,10 @@ function populateCalendar(){
         list.append(
          '<tr>' +
             //add data in td's
-            '<td>' + '</td>' +
-            '<td>' + '</td>' +
-            '<td>' + '</td>' +
-            '<td>' + '</td>' +
+            '<td>' +"8:00 am"+ '</td>' +
+            '<td>' +"Mr. Behrens"+ '</td>' +
+            '<td>' +"Eriks teeth"+ '</td>' +
+            '<td>' +'<span id="addAppointment1" class="btn btn-success" onclick="addAppointment(8)">Add appointment</span>'+ '</td>' +
         '</tr>'
         );
 }
