@@ -1,4 +1,6 @@
 
+
+
 //use this funciton after button press to populate table based on emplyee / day / time constrints
 //this functions takes a parameter of the time of the added appointment
 
@@ -55,4 +57,11 @@ function findAppointments(){
     //grab the selectors data
     //if none selected don't call populateCalendar
     populateCalendar();
+}
+function addAppointment(time){
+    //this grabs the row of the button pressed
+    var row=document.getElementById(""+time)
+    //examlpe on how to change data
+    row.firstChild.textContent="HIIII"
+    //send this appt details to server
 }
