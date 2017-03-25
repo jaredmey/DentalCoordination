@@ -2,6 +2,7 @@
 //use this funciton after button press to populate table based on emplyee / day / time constrints
 //this functions takes a parameter of the time of the added appointment
 
+var timeslots = [8,9,10,11,12,1,2,3,4]
 function populateCalendar(){
     var list=$("table#calendarTable");
     //table header
@@ -15,17 +16,31 @@ function populateCalendar(){
         '</tr>'
     );
     //use for loop to append all times in day
-    //grab from server
+    for( var i=0;i<timeslots.length;i++){
+        
+            //must check array form database to see if the timeslot is taken
+            //if(timeslots[i] is in the array) --- fill the slot with the info
+            //else
+            var time;
+            //Show am or pm
+            if (timeslots[i]>=4){
+                time = timeslots[i]+":00 AM"
+            }
+            else{
+                time = timeslots[i]+":00 PM"
+            }
+
+            list.append(
+             '<tr id="'+timeslots[i]+'">' +
+                //add data in td's
+                '<td>' +time+ '</td>' +
+                '<td>' +"Available"+ '</td>' +
+                '<td>' +"Available"+ '</td>' +
+                '<td>' +'<span id="addAppointment1" class="btn btn-success" onclick="addAppointment('+timeslots[i]+')">Add appointment</span>'+ '</td>' +
+            '</tr>'
+            );
+    }
     
-        list.append(
-         '<tr>' +
-            //add data in td's
-            '<td>' +"8:00 am"+ '</td>' +
-            '<td>' +"Mr. Behrens"+ '</td>' +
-            '<td>' +"Eriks teeth"+ '</td>' +
-            '<td>' +'<span id="addAppointment1" class="btn btn-success" onclick="addAppointment(8)">Add appointment</span>'+ '</td>' +
-        '</tr>'
-        );
 }
 //use this method to delete the displayed calender before populating with populateCalendar
 function removeCalendarRows(){
