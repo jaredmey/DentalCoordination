@@ -37,9 +37,10 @@
                 </optgroup>
             </select>
             Appointment Date: 
-            <input type="date" name="appt">
+            <input id="date" type="date" name="appt">
             <div onclick="findAppointments()" id="findAppt" class="btn btn-lg btn-primary">See Appointments</div>
         </div>
+        <h2 id="displayInfo"></h2>
         <div id="calendar" class="container">
             <table id="calendarTable" class="table">
             </table>

@@ -2,7 +2,8 @@
 //this functions takes a parameter of the time of the added appointment
 
 var timeslots = [8,9,10,11,12,1,2,3,4]
-function populateCalendar(){
+function populateCalendar(dateString,Employee){
+    
     var list=$("table#calendarTable");
     //table header
     list.append(
@@ -14,6 +15,17 @@ function populateCalendar(){
             '<th>' + '</th>' +
         '</tr>'
     );
+    //
+    //
+    //
+    //
+    //This is where you take the two parameters (dateString,Employee) to load all of the corresponding appointments into an array or object array.
+    //
+    //
+    //
+    //
+    //
+    //
     //use for loop to append all times in day
     for( var i=0;i<timeslots.length;i++){
         
@@ -35,7 +47,7 @@ function populateCalendar(){
                 '<td>' +time+ '</td>' +
                 '<td>' +"Available"+ '</td>' +
                 '<td>' +"Available"+ '</td>' +
-                '<td>' +'<span id="addAppointment1" class="btn btn-success" onclick="addAppointment('+timeslots[i]+')">Add appointment</span>'+ '</td>' +
+                '<td>' +'<span id="addAppointment'+timeslots[i]+'" class="btn btn-success" onclick="addAppointment('+timeslots[i]+')">Add appointment</span>'+ '</td>' +
             '</tr>'
             );
     }
@@ -51,14 +63,34 @@ function removeCalendarRows(){
 
 function findAppointments(){
     removeCalendarRows();
-    //grab the selectors data
+    var h2=document.getElementById("displayInfo"); //grab the selectors data
+    var e = document.getElementById("employeePicker");
+    var strUser = e.options[e.selectedIndex].text;
+    console.log(strUser);
+    var date =document.getElementById("date");
+    console.log(date.value);
     //if none selected don't call populateCalendar
-    populateCalendar();
+    if((date.value ==="")||(strUser==="")){
+        h2.textContent="Please Select Employee and date";
+    }
+    else{
+        populateCalendar(date.value,strUser);
+        h2.textContent="Appointments on "+date.value+" with "+strUser
+    }
+    
 }
 function addAppointment(time){
     //this grabs the row of the button pressed
     var row=document.getElementById(""+time)
     //example on how to change data
-    row.firstChild.nextSibling.textContent="Not Available"
-    //send this appt details to server
+    row.firstChild.nextSibling.nextSibling.nextSibling.textContent="Not Available"
+    //removing add button after press
+    $("#addAppointment"+time).remove();
+    //
+    //
+    //
+    //send this appt details to DB
+    //
+    //
+    //
 }
