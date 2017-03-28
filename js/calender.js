@@ -1,3 +1,5 @@
+var typeOfUser; //must set this after successful login
+//must make methods to show/hide certian things/buttons based on the user type
 var timeslots = [8,9,10,11,12,1,2,3,4]
 //example appointments struture
 var appointment1 = {day:" ",time:9,empl:"Dr. Behrens",customer:"Nark"};
@@ -47,7 +49,7 @@ function populateCalendar(dateString,Employee){
                 '<td>' +time+ '</td>' +
                 '<td>' +appts[0].empl+ '</td>' +
                 '<td>' +appts[0].customer+ '</td>' +
-                '<td>' +'<span id="editAppointment'+timeslots[i]+'" class="btn btn-primary" onclick="editAppointment('+timeslots[i]+')">Edit appointment</span>'+ '</td>' +
+                '<td>' +'<span id="deleteAppointment'+timeslots[i]+'" class="btn btn-danger" onclick="deleteAppointment('+timeslots[i]+')">Delete appointment</span>'+ '</td>' +
             '</tr>'
             );
         }
@@ -115,4 +117,7 @@ function addAppointment(time){
     //
     //
     //
+}
+function deleteAppointment(time){
+    
 }
