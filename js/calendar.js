@@ -1,7 +1,13 @@
-var userType; //must set this after successful login. Either a string or number
-var User;//the user that is logged in. For appointment puposes
+//must set this after successful login. Either a string or number
+alert(userType);
+alert(username);
+
+//the user that is logged in. For appointment puposes
+var User;
+
 //must make methods to show/hide certian things/buttons based on the user type
-var timeslots = [8,9,10,11,12,1,2,3,4]
+var timeslots = [8,9,10,11,12,1,2,3,4];
+
 //example appointments struture
 var appointment1 = {day:" ",time:9,empl:"Dr. Behrens",customer:"Nark"};
 var appts = [appointment1];
