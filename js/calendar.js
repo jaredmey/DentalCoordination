@@ -57,12 +57,14 @@ function populateCalendar(dateString, Employee) {
             }
             var add = '<span id="addAppointment' + timeslots[i] + '" class="btn btn-success" onclick="addAppointment(' + timeslots[i] + ')">Add appointment</span>';
             var del = '<span id="deleteAppointment' + timeslots[i] + '" class="btn btn-danger" onclick="deleteAppointment(' + timeslots[i] + ')">Delete appointment</span>';
-            var addOrDeleteButton;
-            if(appts[i].customer==="Available"){
+            var addOrDeleteButton,notes;
+            if(appts[i].customer === "Available"){
                 addOrDeleteButton=add;
+                notes='<input type="text" name="notes" value="">';
             }
             else{
                 addOrDeleteButton=del;
+                notes='<input type="text" name="notes" value="'+appts[i].notes+'">';
             }
             list.append(
                 '<tr id="' + timeslots[i] + '">' +
@@ -70,13 +72,12 @@ function populateCalendar(dateString, Employee) {
                     '<td>' + time + '</td>' +
                     '<td>' + appts[i].empl + '</td>' +
                     '<td>' + appts[i].customer + '</td>' +
-                    '<td>' + "" + '</td>' +
+                    '<td>' + notes + '</td>' +
                     '<td>' +addOrDeleteButton+ '</td>' +
                     '</tr>'
             );
         }
             //else do below
-
     }
     
 }
@@ -123,9 +124,9 @@ function addAppointment(time){
     //
     //
     //
-    //re populate the page
+    //re populate the page may need wait time
 }
 function deleteAppointment(time) {
     //delete the appointment
-    //re populate the page - may need little wait
+    //re populate the page - may need wait time
 }
