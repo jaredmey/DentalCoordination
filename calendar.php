@@ -1,32 +1,49 @@
 <html>
     <?php
-        $mysqli = mysqli_connect("localhost", "user", "password", "JEMDental");
+        function setUserType(){
+            $mysqli = mysqli_connect("localhost", "user", "password", "JEMDental");
 
-        if ($mysqli->connect_errno) {
-            echo 'Cannot connect to server';
+            if ($mysqli->connect_errno) {
+                echo 'Cannot connect to server';
+            }
+
+            $type = mysqli_query($mysqli, "SELECT UserType FROM Users WHERE isLoggedIn = 1");
+
+            $resType = mysqli_fetch_assoc($type);
+
+            $val = $resType["UserType"];
+
+            $userType = 0;
+
+            if ($val == 1) {
+                $userType = 1;
+            } 
+            else if ($val == 2) {
+                $userType = 2;
+            }
+            else if ($val == 3) {
+                $userType = 3;
+            }
+            
+            return $userType;
         }
-
-        $type = mysqli_query($mysqli, "SELECT UserType FROM Users WHERE isLoggedIn = 1");
     
-        $name = mysqli_query($mysqli, "SELECT Username FROM Users WHERE isLoggedIn = 1");
+        function setUserName(){
+            $mysqli = mysqli_connect("localhost", "user", "password", "JEMDental");
 
-        $resType = mysqli_fetch_assoc($type);
-        $resUser = mysqli_fetch_assoc($name);
-        $userName = $resUser["Username"];
-    
-        $val = $resType["UserType"];
+            if ($mysqli->connect_errno) {
+                echo 'Cannot connect to server';
+            }
+            $name = mysqli_query($mysqli, "SELECT Username FROM Users WHERE isLoggedIn = 1");
+
+            $resUser = mysqli_fetch_assoc($name);
+            $userName = $resUser["Username"];
+
+            return $userName;
+        }
         
-        $userType = 0;
-
-        if ($val == 1) {
-            $userType = 1;
-        } 
-        else if ($val == 2) {
-            $userType = 2;
-        }
-        else if ($val == 3) {
-            $userType = 3;
-        }
+        $userType = setUserType();
+        $userName = setUserName();
     ?>
     <head>
         <title>JEM Scheduling</title>

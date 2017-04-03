@@ -60,11 +60,11 @@ function populateCalendar(dateString, Employee) {
             var addOrDeleteButton,notes;
             if(appts[i].customer === "Available"){
                 addOrDeleteButton=add;
-                notes='<input type="text" name="notes" value="">';
+                notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="none">';
             }
             else{
                 addOrDeleteButton=del;
-                notes='<input type="text" name="notes" value="'+appts[i].notes+'">';
+                notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="'+appts[i].notes+'">';
             }
             list.append(
                 '<tr id="' + timeslots[i] + '">' +
@@ -111,22 +111,33 @@ function addAppointment(time){
     //this grabs the row of the button pressed
     var row=document.getElementById(""+time)
     //example on how to change data
+    row.firstChild.nextSibling.nextSibling.nextSibling.textContent="Not Available";
+    //removing add button after press
+    $("#addAppointment" + time).remove();
     var e = document.getElementById("employeePicker");
     var employee = e.options[e.selectedIndex].text;
     var date = document.getElementById("date");
+    var notes = $("#notes"+time).val(); 
     //use 'date.value' for the date and 'employee' for the employee lol 
     //we know the user var, use the var 'time' for time.
     //
-    //
-    //
+    
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    }
+    console.log(notes);
+    
+    xmlhttp.open("GET", "calendarDatabase.php?username=" + username + "&employee=" + employee + "&date=" + date.value + "&time=" + time + "&notes=" + notes);
+    xmlhttp.send();
+    
     //send this appt details to DB
     //
     //
     //
     //
-    //re populate the page may need wait time
+    //re populate the page
 }
 function deleteAppointment(time) {
     //delete the appointment
-    //re populate the page - may need wait time
+    //re populate the page - may need little wait
 }
