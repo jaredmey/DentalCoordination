@@ -1,7 +1,7 @@
 //must set this after successful login. Either a string or number
 //alert(userType);
 //alert(username);
-
+//cols for calendar - user String, employee String, date String, Time int, notes String,
 //the user that is logged in. For appointment puposes
 var User;
 
@@ -9,13 +9,13 @@ var User;
 var timeslots = [8, 9, 10, 11, 12, 1, 2, 3, 4];
 
 //example appointments struture
-var appointmentBlank = {day: "x", time: 0, empl: "x", customer: "x"};
-var appts = [];
+var appointmentBlank = {day: "x", time: 0, empl: "x", customer: "x",notes:""};
+var appts = [0,1,2,3,4,5,6,7,8];
 function populateCalendar(dateString, Employee) {
     //clear appts
     var i, j, time, list = $("table#calendarTable");
     for (j = 0; j < timeslots.length; j = j + 1) {
-        appts.push(appointmentBlank);
+        appts[j]={day: dateString, time: 0, empl: Employee, customer: "Available"};
         appts[j].time = Number(timeslots[j]);
         console.log(appts[j].time);
     }
@@ -45,10 +45,13 @@ function populateCalendar(dateString, Employee) {
     //use for loop to append all times in day
     
     for (i = 0; i < timeslots.length; i  = i + 1) {
+        console.log("TS= "+timeslots[i]+" appts = "+appts[i].time);
         //must check array form database to see if the timeslot is taken
         //if(timeslots[i] is in the array) --- fill the slot with the info
         //check all appts in array not just 0
+        console.log(appts[i+1]);
         if (timeslots[i] === appts[i].time) {
+            
             //Show am or pm
             if (timeslots[i] > 4) {
                 time = timeslots[i] + ":00 AM";
@@ -68,7 +71,7 @@ function populateCalendar(dateString, Employee) {
         }
             //else do below
             else {
-            //console.log("TS= "+timeslots[i]+" appts = "+appts[i].time);
+            
             
             //Show am or pm
                 if (timeslots[i] > 4) {
@@ -123,10 +126,16 @@ function addAppointment(time){
     row.firstChild.nextSibling.nextSibling.nextSibling.textContent="Not Available";
     //removing add button after press
     $("#addAppointment" + time).remove();
+    var e = document.getElementById("employeePicker");
+    var employee = e.options[e.selectedIndex].text;
+    var date = document.getElementById("date");
+    //use 'date.value' for the date and 'employee' for the employee lol 
+    //we know the user var, use the var 'time' for time.
     //
     //
     //
     //send this appt details to DB
+    //
     //
     //
     //
