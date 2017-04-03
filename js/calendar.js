@@ -3,21 +3,19 @@
 //alert(username);
 //cols for calendar - user String, employee String, date String, Time int, notes String,
 //the user that is logged in. For appointment puposes
-var User;
+
 
 //must make methods to show/hide certian things/buttons based on the user type
 var timeslots = [8, 9, 10, 11, 12, 1, 2, 3, 4];
 
 //example appointments struture
-var appointmentBlank = {day: "x", time: 0, empl: "x", customer: "x",notes:""};
 var appts = [0,1,2,3,4,5,6,7,8];
 function populateCalendar(dateString, Employee) {
     //clear appts
     var i, j, time, list = $("table#calendarTable");
     for (j = 0; j < timeslots.length; j = j + 1) {
-        appts[j]={day: dateString, time: 0, empl: Employee, customer: "Available"};
+        appts[j]={day: dateString, time: 0, empl: Employee, customer: "Available",notes:""};
         appts[j].time = Number(timeslots[j]);
-        console.log(appts[j].time);
     }
     
     //table header
@@ -26,7 +24,8 @@ function populateCalendar(dateString, Employee) {
         //add data in td's
             '<th>' + "Time" + '</th>' +
             '<th>' + "Employee" + '</th>' +
-            '<th>' + "Customer" + '</th>' +
+            '<th>' + "Customer" + '</th>' + 
+            '<th>' + "Appointment Notes" + '</th>' +
             '<th>' + '</th>' +
             '</tr>'
     );
@@ -45,11 +44,9 @@ function populateCalendar(dateString, Employee) {
     //use for loop to append all times in day
     
     for (i = 0; i < timeslots.length; i  = i + 1) {
-        console.log("TS= "+timeslots[i]+" appts = "+appts[i].time);
         //must check array form database to see if the timeslot is taken
         //if(timeslots[i] is in the array) --- fill the slot with the info
         //check all appts in array not just 0
-        console.log(appts[i+1]);
         if (timeslots[i] === appts[i].time) {
             
             //Show am or pm
@@ -58,38 +55,28 @@ function populateCalendar(dateString, Employee) {
             } else {
                 time = timeslots[i] + ":00 PM";
             }
-
+            var add = '<span id="addAppointment' + timeslots[i] + '" class="btn btn-success" onclick="addAppointment(' + timeslots[i] + ')">Add appointment</span>';
+            var del = '<span id="deleteAppointment' + timeslots[i] + '" class="btn btn-danger" onclick="deleteAppointment(' + timeslots[i] + ')">Delete appointment</span>';
+            var addOrDeleteButton;
+            if(appts[i].customer==="Available"){
+                addOrDeleteButton=add;
+            }
+            else{
+                addOrDeleteButton=del;
+            }
             list.append(
                 '<tr id="' + timeslots[i] + '">' +
                 //add data in td's
                     '<td>' + time + '</td>' +
                     '<td>' + appts[i].empl + '</td>' +
                     '<td>' + appts[i].customer + '</td>' +
-                    '<td>' + '<span id="deleteAppointment' + timeslots[i] + '" class="btn btn-danger" onclick="deleteAppointment(' + timeslots[i] + ')">Delete appointment</span>' + '</td>' +
+                    '<td>' + "" + '</td>' +
+                    '<td>' +addOrDeleteButton+ '</td>' +
                     '</tr>'
             );
         }
             //else do below
-            else {
-            
-            
-            //Show am or pm
-                if (timeslots[i] > 4) {
-                    time = timeslots[i] + ":00 AM";
-                } else {
-                    time = timeslots[i] + ":00 PM";
-                }
 
-                list.append(
-                    '<tr id="' + timeslots[i] + '">' +
-                //add data in td's
-                        '<td>' + time + '</td>' +
-                        '<td>' + "Available" + '</td>' +
-                        '<td>' + "Available" + '</td>' +
-                        '<td>' + '<span id="addAppointment' + timeslots[i] + '" class="btn btn-success" onclick="addAppointment(' + timeslots[i] + ')">Add appointment</span>'+ '</td>' +
-                        '</tr>'
-                );
-            }
     }
     
 }
@@ -123,9 +110,6 @@ function addAppointment(time){
     //this grabs the row of the button pressed
     var row=document.getElementById(""+time)
     //example on how to change data
-    row.firstChild.nextSibling.nextSibling.nextSibling.textContent="Not Available";
-    //removing add button after press
-    $("#addAppointment" + time).remove();
     var e = document.getElementById("employeePicker");
     var employee = e.options[e.selectedIndex].text;
     var date = document.getElementById("date");
