@@ -49,7 +49,7 @@ function populateCalendar(dateString, Employee) {
         dataType: 'json',
         data: ({employee: employee, date: date.value}),
         success: function(data){
-<<<<<<< HEAD
+
             var i;
             for(i=0; i<data.length;i=i+1){
                 var j;
@@ -60,15 +60,6 @@ function populateCalendar(dateString, Employee) {
                         appts[j].notes=data[i]["AppointmentNotes"];
                     }
                 }
-=======
-            console.log(data);
-            var i;
-            for(i=0; i<data.length;i=i+1){
-                appts[data[i].Time].day=data[i].Date;
-                appts[data[i].Time].empl=data[i].Employee;
-                appts[data[i].Time].customer=data[i].Username;
-                appts[data[i].Time].notes=data[i].AppointmentNotes;
->>>>>>> origin/master
             }
             
             //use for loop to append all times in day
