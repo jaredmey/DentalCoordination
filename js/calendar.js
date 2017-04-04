@@ -50,11 +50,11 @@ function populateCalendar(dateString, Employee) {
         data: ({employee: employee, date: date.value}),
         success: function(data){
             console.log(data);
-            for(appointment in data){
-                appts[data.Time].day=data.Date;
-                appts[data.Time].empl=data.Employee;
-                appts[data.Time].customer=data.Username;
-                appts[data.Time].notes=data.AppointmentNotes;
+            for(app in data){
+                appts[app.Time].day=app.Date;
+                appts[app.Time].empl=app.Employee;
+                appts[app.Time].customer=app.Username;
+                appts[app.Time].notes=app.AppointmentNotes;
             }
         }
     });
