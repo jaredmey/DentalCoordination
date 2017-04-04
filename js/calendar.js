@@ -49,55 +49,57 @@ function populateCalendar(dateString, Employee) {
         dataType: 'json',
         data: ({employee: employee, date: date.value}),
         success: function(data){
-            console.log(data);
-            for(app in data){
-                appts[app.Time].day=app.Date;
-                appts[app.Time].empl=app.Employee;
-                appts[app.Time].customer=app.Username;
-                appts[app.Time].notes=app.AppointmentNotes;
+            var i;
+            for(i=0; i<data.length;i=i+1){
+                var j;
+                for(j=0; j<appts.length;j=j+1){
+                    if(Number(data[i]["Time"])===appts[j].time){
+                        appts[j].customer=data[i]["Username"];
+                        appts[j].empl=data[i]["Employee"];
+                        appts[j].notes=data[i]["AppointmentNotes"];
+                    }
+                }
+            }
+            
+            //use for loop to append all times in day
+    
+            for (i = 0; i < timeslots.length; i  = i + 1) {
+                //must check array form database to see if the timeslot is taken
+                //if(timeslots[i] is in the array) --- fill the slot with the info
+                //check all appts in array not just 0
+                if (timeslots[i] === appts[i].time) {
+
+                    //Show am or pm
+                    if (timeslots[i] > 4) {
+                        time = timeslots[i] + ":00 AM";
+                    } else {
+                        time = timeslots[i] + ":00 PM";
+                    }
+                    var add = '<span id="addAppointment' + timeslots[i] + '" class="btn btn-success" onclick="addAppointment(' + timeslots[i] + ')">Add appointment</span>';
+                    var del = '<span id="deleteAppointment' + timeslots[i] + '" class="btn btn-danger" onclick="deleteAppointment(' + timeslots[i] + ')">Delete appointment</span>';
+                    var addOrDeleteButton,notes;
+                    if(appts[i].customer === "Available"){
+                        addOrDeleteButton=add;
+                        notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="">';
+                    }
+                    else{
+                        addOrDeleteButton=del;
+                        notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="'+appts[i].notes+'">';
+                    }
+                    list.append(
+                        '<tr id="' + timeslots[i] + '">' +
+                        //add data in td's
+                            '<td>' + time + '</td>' +
+                            '<td>' + appts[i].empl + '</td>' +
+                            '<td>' + appts[i].customer + '</td>' +
+                            '<td>' + notes + '</td>' +
+                            '<td>' +addOrDeleteButton+ '</td>' +
+                            '</tr>'
+                    );
+                }
             }
         }
     });
-    
-    //use for loop to append all times in day
-    
-    for (i = 0; i < timeslots.length; i  = i + 1) {
-        //must check array form database to see if the timeslot is taken
-        //if(timeslots[i] is in the array) --- fill the slot with the info
-        //check all appts in array not just 0
-        if (timeslots[i] === appts[i].time) {
-            
-            //Show am or pm
-            if (timeslots[i] > 4) {
-                time = timeslots[i] + ":00 AM";
-            } else {
-                time = timeslots[i] + ":00 PM";
-            }
-            var add = '<span id="addAppointment' + timeslots[i] + '" class="btn btn-success" onclick="addAppointment(' + timeslots[i] + ')">Add appointment</span>';
-            var del = '<span id="deleteAppointment' + timeslots[i] + '" class="btn btn-danger" onclick="deleteAppointment(' + timeslots[i] + ')">Delete appointment</span>';
-            var addOrDeleteButton,notes;
-            if(appts[i].customer === "Available"){
-                addOrDeleteButton=add;
-                notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="">';
-            }
-            else{
-                addOrDeleteButton=del;
-                notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="'+appts[i].notes+'">';
-            }
-            list.append(
-                '<tr id="' + timeslots[i] + '">' +
-                //add data in td's
-                    '<td>' + time + '</td>' +
-                    '<td>' + appts[i].empl + '</td>' +
-                    '<td>' + appts[i].customer + '</td>' +
-                    '<td>' + notes + '</td>' +
-                    '<td>' +addOrDeleteButton+ '</td>' +
-                    '</tr>'
-            );
-        }
-            //else do below
-    }
-    
 }
 //use this method to delete the displayed calender before populating with populateCalendar
 function removeCalendarRows() {
@@ -112,9 +114,7 @@ function findAppointments() {
     var h2 = document.getElementById("displayInfo"); //grab the selectors data
     var e = document.getElementById("employeePicker");
     var employee = e.options[e.selectedIndex].text;
-    console.log(employee);
     var date = document.getElementById("date");
-    console.log(date.value);
     //if none selected don't call populateCalendar
     if( (date.value  === "") || (employee === "") ) {
         h2.textContent="Please Select Employee and date";
@@ -123,7 +123,6 @@ function findAppointments() {
         populateCalendar(date.value,employee);
         h2.textContent="Appointments on "+date.value+" with "+employee;
     }
-    
 }
 function addAppointment(time){
     //this grabs the row of the button pressed
@@ -147,7 +146,11 @@ function addAppointment(time){
     xmlhttp.open("GET", "calendarAdd.php?username=" + username + "&employee=" + employee + "&date=" + date.value + "&time=" + time + "&notes=" + appnotes);
     xmlhttp.send();
     
-    //re populate the page
+    //remove current calendar
+    removeCalendarRows();
+    
+    //re populate the page with updated information
+    populateCalendar(date.value, employee);
     
 }
 function deleteAppointment(time) {
