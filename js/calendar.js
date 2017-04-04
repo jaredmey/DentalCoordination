@@ -34,13 +34,25 @@ function populateCalendar(dateString, Employee) {
     //
     //
     //This is where you take the two parameters (dateString,Employee) to load all of the corresponding appointments into an array or object array.
-    //sql call to grab appointments 'where employee = Employee and date = dateString' 
-    //
-    //
-    //
-    //
-    //
-    //
+    //sql call to grab appointments 'where employee = Employee and date = dateString'
+    var e = document.getElementById("employeePicker");
+    var employee = e.options[e.selectedIndex].text;
+    var date = document.getElementById("date");
+    
+    
+    //Success function will return calendar information in an array of objects, as shown in this image: 
+    // http://image.prntscr.com/image/c6025fa03ce94a7281a4487db5fc0259.png
+    
+    $.ajax({
+        url: 'calendarFill.php',
+        type: "POST",
+        dataType: 'json',
+        data: ({employee: employee, date: date.value}),
+        success: function(data){
+            console.log(data);
+        }
+    });
+    
     //use for loop to append all times in day
     
     for (i = 0; i < timeslots.length; i  = i + 1) {
@@ -60,7 +72,7 @@ function populateCalendar(dateString, Employee) {
             var addOrDeleteButton,notes;
             if(appts[i].customer === "Available"){
                 addOrDeleteButton=add;
-                notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="none">';
+                notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="">';
             }
             else{
                 addOrDeleteButton=del;
@@ -110,32 +122,27 @@ function findAppointments() {
 function addAppointment(time){
     //this grabs the row of the button pressed
     var row=document.getElementById(""+time)
-    //example on how to change data
-    row.firstChild.nextSibling.nextSibling.nextSibling.textContent="Not Available";
     //removing add button after press
     $("#addAppointment" + time).remove();
     var e = document.getElementById("employeePicker");
     var employee = e.options[e.selectedIndex].text;
     var date = document.getElementById("date");
-    var notes = $("#notes"+time).val(); 
+    var appnotes = document.getElementById("notes"+time).value;
     //use 'date.value' for the date and 'employee' for the employee lol 
     //we know the user var, use the var 'time' for time.
     //
     
+    
+    //send this appt details to DB
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     }
-    console.log(notes);
     
-    xmlhttp.open("GET", "calendarDatabase.php?username=" + username + "&employee=" + employee + "&date=" + date.value + "&time=" + time + "&notes=" + notes);
+    xmlhttp.open("GET", "calendarAdd.php?username=" + username + "&employee=" + employee + "&date=" + date.value + "&time=" + time + "&notes=" + appnotes);
     xmlhttp.send();
     
-    //send this appt details to DB
-    //
-    //
-    //
-    //
     //re populate the page
+    
 }
 function deleteAppointment(time) {
     //delete the appointment
