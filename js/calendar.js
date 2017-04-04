@@ -50,6 +50,12 @@ function populateCalendar(dateString, Employee) {
         data: ({employee: employee, date: date.value}),
         success: function(data){
             console.log(data);
+            for(appointment in data){
+                appts[data.Time].day=data.Date;
+                appts[data.Time].empl=data.Employee;
+                appts[data.Time].customer=data.Username;
+                appts[data.Time].notes=data.AppointmentNotes;
+            }
         }
     });
     
@@ -146,5 +152,6 @@ function addAppointment(time){
 }
 function deleteAppointment(time) {
     //delete the appointment
+    
     //re populate the page - may need little wait
 }
