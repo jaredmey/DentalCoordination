@@ -22,15 +22,22 @@
             </ul>
           </div>
         </nav>
-        
-       <div id="employeeList" class="container">
-            Employees:
-            
+        <div class="juumbotron container">
+            <h1>Employee Manager</h1>
+            <p><span onclick="addEmployee()" id="addEmployees" class="btn btn-lg btn-success">Add Employee</span>
+            </p>
+            <div id="addBox">
+                <input id="name" name="name" type="text" class="form-control" placeholder="EmployeeName" required autofocus>
+                <input id="username" name="username" type="text" class="form-control" placeholder="Choose a username" required>
+                <input id="password" name="password" type="password" class="form-control" placeholder="Password" required>
+                _=Dentist , _=Hygeniest
+                <input id="UserType" name="usertype" type="text" class="form-control" placeholder="User type" required>
+            </div>
         </div>
         <h2 id="displayInfo"></h2>
-        <div id="calendar" class="container">
+        <div id="EmployeeDiv" class="container">
             <table id="employeeTable" class="table">
             </table>
-        </div>
+        </div> 
     </body>
 </html>
