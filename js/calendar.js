@@ -193,35 +193,35 @@ function setUser(){
     updateEmployees();
 }
 function updateEmployees(){
-    var select = $("#employeePicker")
-    while (select.hasChildNodes()) {
-        select.removeChild(select.lastChild);
+    var s = $("#employeePicker");
+    while (s.hasChildNodes()) {
+        s.removeChild(s.lastChild);
     }
     //grab all employees names and user types
     //fill it into ex or put in success
     var ex = [{Name:"Bob",userType:1},{name:"Dr Jim",userType:2}];
     //appending Dentist option
-    select.append(
+    s.append(
     '<optgroup label="Dentist">'
     );
     var name,i;
     for(i=0;i<ex.length;i++){
         if(ex[i].userType===2){
             name=ex[i].name
-            select.append(
+            s.append(
             '<option>'+name+'</option>'
             );
         }
     }
 
     //end of dentists
-    select.append(
+    s.append(
     '</optgroup>'
     );
     //
     //
     //appending the hygienist
-    select.append(
+    s.append(
     '<optgroup label="hygienist">'
     );
     var name;
@@ -229,14 +229,14 @@ function updateEmployees(){
     for(i=0;i<ex.length;i++){
         if(ex[i].userType===1){
             name=ex[i].name
-            select.append(
+            s.append(
             '<option>'+name+'</option>'
             );
         }
     }
 
     //end of hygienist
-    select.append(
+    s.append(
     '</optgroup>'
     );
 }
