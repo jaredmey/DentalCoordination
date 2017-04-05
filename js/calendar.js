@@ -183,8 +183,7 @@ function deleteAppointment(time) {
         }
     }
 }
-<<<<<<< Updated upstream
-=======
+
 function setUser(){
     //userType --- 0=user, 1=hygeniest, 2=doctor, 3=admin
     if(userType!=3){
@@ -193,53 +192,53 @@ function setUser(){
     updateEmployees();
 }
 function updateEmployees(){
-    var s = $("#employeePicker");
+    var s = document.getElementById("employeePicker");
     while (s.hasChildNodes()) {
         s.removeChild(s.lastChild);
     }
+    s = $("#employeePicker");
     //grab all employees names and user types
     //fill it into ex or put in success
-    var ex = [{Name:"Bob",userType:1},{name:"Dr Jim",userType:2}];
-    //appending Dentist option
-    s.append(
-    '<optgroup label="Dentist">'
-    );
-    var name,i;
-    for(i=0;i<ex.length;i++){
-        if(ex[i].userType===2){
-            name=ex[i].name
-            s.append(
-            '<option>'+name+'</option>'
-            );
-        }
-    }
+    
+     $.ajax({
+        url: 'calendarGetEmployees.php',
+        type: "POST",
+        dataType: "json",
+        success: function(data){
+            console.log(data);
+            ex = data;
+            var name,i,str="";
+            str = str +'<optgroup label="Dentist">';
+            for(i=0;i<ex.length;i++){
+                if(ex[i]["UserType"]==="2"){
+                    name=ex[i]["Name"]
+                    str = str + '<option>'+name+'</option>';
+                }
+            }
+            
+            //end of dentists
+            str = str + '</optgroup>';
 
-    //end of dentists
-    s.append(
-    '</optgroup>'
-    );
-    //
-    //
-    //appending the hygienist
-    s.append(
-    '<optgroup label="hygienist">'
-    );
-    var name;
-    //loop through this one
-    for(i=0;i<ex.length;i++){
-        if(ex[i].userType===1){
-            name=ex[i].name
-            s.append(
-            '<option>'+name+'</option>'
-            );
-        }
-    }
+            //
+            //
+            //appending the hygienist
+            str = str + '<optgroup label="Hygienist">';
+            var name;
+            //loop through this one
+            for(i=0;i<ex.length;i++){
+                if(ex[i]["UserType"]==="1"){
+                    name=ex[i]["Name"]
+                    str = str + '<option>'+name+'</option>';
+                }
+            }
 
-    //end of hygienist
-    s.append(
-    '</optgroup>'
-    );
+            //end of hygienist
+            str = str + '</optgroup>';
+            s.append(str);
+        },
+        error: function(xhr, errorThrown) {
+            alert(xhr.status);
+            alert(errorThrown);
+        }
+     });
 }
-
-
->>>>>>> Stashed changes

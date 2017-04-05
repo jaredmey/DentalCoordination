@@ -55,7 +55,7 @@
         <script src="js/calendar.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     </head>
-    <body onload="setUser();">
+    <body onload="updateEmployees();">
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
