@@ -156,6 +156,19 @@ function addAppointment(time){
 }
 function deleteAppointment(time) {
     //delete the appointment
-    
+    var i;
+    for(i=0;i<appts.length;i++){
+        //finds correct appt in appts array
+        if(appts[i].time===time){
+            //
+            //
+            //
+            //delete from db where Time=appts[i].time and Employee appts[i].employee and date= appts[i].day
+            //
+            //
+            //
+        }
+    }
     //re populate the page - may need little wait
+    populateCalendar(date.value, employee);
 }
