@@ -5,6 +5,7 @@
 //the user that is logged in. For appointment puposes
 
 
+
 //must make methods to show/hide certian things/buttons based on the user type
 var timeslots = [8, 9, 10, 11, 12, 1, 2, 3, 4];
 
@@ -79,12 +80,19 @@ function populateCalendar(dateString, Employee) {
                     var add = '<span id="addAppointment' + timeslots[i] + '" class="btn btn-success" onclick="addAppointment(' + timeslots[i] + ')">Add appointment</span>';
                     var del = '<span id="deleteAppointment' + timeslots[i] + '" class="btn btn-danger" onclick="deleteAppointment(' + timeslots[i] + ')">Delete appointment</span>';
                     var addOrDeleteButton,notes;
-                    if(appts[i].customer === "Available"){
+                    if(appts[i].customer === "Available" && userType===0 ){
                         addOrDeleteButton=add;
                         notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="">';
                     }
                     else{
-                        addOrDeleteButton=del;
+                        //if a customer
+                        if((userType===0) && (username != appts[i].customer)){
+                            addOrDeleteButton=""
+                        }
+                        else{
+                            addOrDeleteButton=del;
+                        }
+                        
                         notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="'+appts[i].notes+'">';
                     }
                     list.append(
@@ -183,3 +191,11 @@ function deleteAppointment(time) {
         }
     }
 }
+function setUser(){
+    //userType --- 0=user, 1=hygeniest, 2=doctor, 3=admin
+    if(userType!=3){
+        $("#AdminPage").hide();
+    }
+}
+
+
