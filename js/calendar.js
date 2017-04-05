@@ -183,3 +183,63 @@ function deleteAppointment(time) {
         }
     }
 }
+<<<<<<< Updated upstream
+=======
+function setUser(){
+    //userType --- 0=user, 1=hygeniest, 2=doctor, 3=admin
+    if(userType!=3){
+        $("#AdminPage").hide();
+    }
+    updateEmployees();
+}
+function updateEmployees(){
+    var select = $("#employeePicker")
+    while (select.hasChildNodes()) {
+        select.removeChild(select.lastChild);
+    }
+    //grab all employees names and user types
+    //fill it into ex or put in success
+    var ex = [{Name:"Bob",userType:1},{name:"Dr Jim",userType:2}];
+    //appending Dentist option
+    select.append(
+    '<optgroup label="Dentist">'
+    );
+    var name,i;
+    for(i=0;i<ex.length;i++){
+        if(ex[i].userType===2){
+            name=ex[i].name
+            select.append(
+            '<option>'+name+'</option>'
+            );
+        }
+    }
+
+    //end of dentists
+    select.append(
+    '</optgroup>'
+    );
+    //
+    //
+    //appending the hygienist
+    select.append(
+    '<optgroup label="hygienist">'
+    );
+    var name;
+    //loop through this one
+    for(i=0;i<ex.length;i++){
+        if(ex[i].userType===1){
+            name=ex[i].name
+            select.append(
+            '<option>'+name+'</option>'
+            );
+        }
+    }
+
+    //end of hygienist
+    select.append(
+    '</optgroup>'
+    );
+}
+
+
+>>>>>>> Stashed changes
