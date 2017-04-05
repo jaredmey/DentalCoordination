@@ -76,15 +76,14 @@
         <div id="calendarSelectors" class="container">
             Employee: 
             <select id="employeePicker" class="selectpicker">
-                <option value="blank"></option>
                 <optgroup label="Dentist">
-                    <option value="dr1">Dr. Meyer</option>
-                    <option value="dr2">Dr. Behrens</option>
-                    <option value="dr3">Dr. Porzio</option>
+                    <option>Dr. Meyer</option>
+                    <option>Dr. Behrens</option>
+                    <option>Dr. Porzio</option>
                 </optgroup>
                 <optgroup label="Hygienist">
-                    <option value="DH1">Ms. Butterbaugh</option>
-                    <option value="DH2">Mr. Lee</option>
+                    <option>Ms. Butterbaugh</option>
+                    <option>Mr. Lee</option>
                 </optgroup>
             </select>
             Appointment Date: 
