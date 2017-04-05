@@ -5,11 +5,11 @@
         echo 'Cannot connect to server';
     }
 
-    $username = mysqli_real_escape_string($mysqli, $_GET['username']);
-    $employee = mysqli_real_escape_string($mysqli, $_GET['employee']);
-    $date = mysqli_real_escape_string($mysqli, $_GET['date']);
-    $time = mysqli_real_escape_string($mysqli, $_GET['time']);
-    $notes = mysqli_real_escape_string($mysqli, $_GET['notes']);
+    $username = $_POST['username'];
+    $employee = $_POST['employee'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $notes = $_POST['notes'];
 
     $sql = "INSERT INTO `Calendar` (`username`, `employee`, `date`, `time`, `appointmentnotes`) VALUES ('$username', '$employee', '$date', '$time', '$notes')";
 

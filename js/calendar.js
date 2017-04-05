@@ -138,37 +138,48 @@ function addAppointment(time){
     //we know the user var, use the var 'time' for time.
     //
     
-    
-    //send this appt details to DB
-    if (window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest();
-    }
-    
-    xmlhttp.open("GET", "calendarAdd.php?username=" + username + "&employee=" + employee + "&date=" + date.value + "&time=" + time + "&notes=" + appnotes);
-    xmlhttp.send();
-    
-    //remove current calendar
-    removeCalendarRows();
-    
-    //re populate the page with updated information
-    populateCalendar(date.value, employee);
-    
+    $.ajax({
+        url: 'calendarAdd.php',
+        type: "POST",
+        data: ({ username: username, employee: employee, date: date.value, time: time, notes: appnotes}),
+        success: function(data){
+                    
+            //re populate the page - may need little wait
+            findAppointments();
+        },
+        error: function (xhr, errorThrown) {
+            alert(xhr.status);
+            alert(errorThrown);
+        }
+    });
 }
+
 function deleteAppointment(time) {
     //delete the appointment
     var i;
     for(i=0;i<appts.length;i++){
         //finds correct appt in appts array
         if(appts[i].time===time){
-            //
-            //
-            //
+            
+            var e = document.getElementById("employeePicker");
+            var employee = e.options[e.selectedIndex].text;
+            var date = document.getElementById("date");
+ 
             //delete from db where Time=appts[i].time and Employee appts[i].employee and date= appts[i].day
-            //
-            //
-            //
+            $.ajax({
+                url: 'calendarDelete.php',
+                type: "POST",
+                data: ({employee: employee, date: date.value, time: appts[i].time}),
+                success: function(data){
+                    
+                    //re populate the page - may need little wait
+                    findAppointments();
+                },
+                error: function (xhr, errorThrown) {
+                    alert(xhr.status);
+                    alert(errorThrown);
+                }
+            });
         }
     }
-    //re populate the page - may need little wait
-    populateCalendar(date.value, employee);
 }
