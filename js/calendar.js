@@ -84,7 +84,13 @@ function populateCalendar(dateString, Employee) {
                         notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="">';
                     }
                     else{
-                        addOrDeleteButton=del;
+                        if(userType === 0 && appts[i].customer != username){
+                            addOrDeleteButton="";
+                        }
+                        else{
+                            addOrDeleteButton=del;
+                        }
+                        
                         notes='<input id="notes'+timeslots[i]+'" type="text" name="notes" value="'+appts[i].notes+'">';
                     }
                     list.append(
