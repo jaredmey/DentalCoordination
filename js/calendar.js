@@ -1,14 +1,18 @@
-//default times in a working day
+//must set this after successful login. Either a string or number
+//alert(userType);
+//alert(username);
+//cols for calendar - user String, employee String, date String, Time int, notes String,
+//the user that is logged in. For appointment puposes
+
+
+//must make methods to show/hide certian things/buttons based on the user type
 var timeslots = [8, 9, 10, 11, 12, 1, 2, 3, 4];
 
 //example appointments struture
 var appts = [0,1,2,3,4,5,6,7,8];
-//this method populates the table with appointments from the selected time and employee
-//this is a helper method which is called by many functions to refresh the calendar
 function populateCalendar(dateString, Employee) {
-    
+    //clear appts
     var i, j, time, list = $("table#calendarTable");
-    //fill in with blank appts
     for (j = 0; j < timeslots.length; j = j + 1) {
         appts[j]={day: dateString, time: 0, empl: Employee, customer: "Available",notes:""};
         appts[j].time = Number(timeslots[j]);
@@ -111,7 +115,7 @@ function removeCalendarRows() {
         list.removeChild(list.lastChild);
     }
 }
-//grabs selected criteria from the html and calls populate calendar
+
 function findAppointments() {
     removeCalendarRows();
     var h2 = document.getElementById("displayInfo"); //grab the selectors data
@@ -127,7 +131,6 @@ function findAppointments() {
         h2.textContent="Appointments on "+date.value+" with "+employee;
     }
 }
-//adds appointments based on the specific add button(time) 
 function addAppointment(time){
     //this grabs the row of the button pressed
     var row=document.getElementById(""+time)
@@ -156,7 +159,7 @@ function addAppointment(time){
         }
     });
 }
-//deletes appointment based on the button/row it was pressed in
+
 function deleteAppointment(time) {
     //delete the appointment
     var i;
@@ -186,7 +189,7 @@ function deleteAppointment(time) {
         }
     }
 }
-//sets the logged in user for future use
+
 function setUser(){
     //userType --- 0=user, 1=hygeniest, 2=doctor, 3=admin
     if(userType!=3){
@@ -194,7 +197,6 @@ function setUser(){
     }
     updateEmployees();
 }
-//refreshes updated employees
 function updateEmployees(){
     var s = document.getElementById("employeePicker");
     while (s.hasChildNodes()) {
