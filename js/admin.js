@@ -55,7 +55,6 @@ function addEmployee(){
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var UserType = document.getElementById("UserType").value;
-    
     //figure out how to get all the values from the above
     //add to user DB table
     //call last
