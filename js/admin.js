@@ -1,7 +1,6 @@
 var Employees;
 function populateEmployees(){
     
-    //removeEmployeeRows();
     //Make db call retrieve the employees type=? only. Grab the names only.
     var i,list = $("#employeeTable");
     removeEmployeeRows();
@@ -14,10 +13,10 @@ function populateEmployees(){
         dataType: "json",
         success: function(data){
             var Employees = [];
-            console.log(data);
+            //console.log(data);
             var i;
             for (i = 0; i < data.length; i++) {
-                console.log(data[i]["Name"]);
+                //console.log(data[i]["Name"]);
                 Employees[i] = data[i]["Name"];
             }
             //put this in the success finction
@@ -42,13 +41,27 @@ function populateEmployees(){
         }
     });
 }
+
 function deleteEmployee(position){
-    EmployeeName = $("#employee"+position).text();
-    console.log(EmployeeName);
+    var employeeName = $("#employee"+position).text();
+    console.log(employeeName);
+    console.log("Hello");
     //delete employee where Name=EmployeeName
-    //DB Call
     
-    populateEmployees();
+    $.ajax({
+        url: 'adminDeleteEmployees.php',
+        type: "POST",
+        data: ({ employee: employeeName}),
+        success: function(data) {
+            //re populate the page - may need little wait
+            console.log("success");
+            populateEmployees();
+        },
+        error: function (xhr, errorThrown) {
+            alert(xhr.status);
+            alert(errorThrown);
+        }        
+    });
 }
 function addEmployee(){
     var name = document.getElementById("name").value;
@@ -63,7 +76,6 @@ function addEmployee(){
         type: "POST",
         data: ({ name: name, username: username, password: password, usertype: UserType}),
         success: function(data){
-                    
             //re populate the page - may need little wait
             populateEmployees();
         },
