@@ -1,4 +1,5 @@
 var Employees;
+//populates the current employees with all the current ones
 function populateEmployees(){
     
     //Make db call retrieve the employees type=? only. Grab the names only.
@@ -19,13 +20,14 @@ function populateEmployees(){
                 //console.log(data[i]["Name"]);
                 Employees[i] = data[i]["Name"];
             }
-            //put this in the success finction
+            //table header
             list.append(
                 '<tr>'+
                 '<th>' + "Employee Name" + '</th>' +
                 '<th>' + "" + '</th>' +
                 '</tr>'
                 );
+            //adding all table rows with data
             for (i=0;i<Employees.length;i++){
                 list.append(    
                 '<tr>' +
@@ -41,7 +43,7 @@ function populateEmployees(){
         }
     });
 }
-
+//deletes employee based on button pressed
 function deleteEmployee(position){
     var employeeName = $("#employee"+position).text();
     console.log(employeeName);
@@ -63,6 +65,7 @@ function deleteEmployee(position){
         }        
     });
 }
+//adds new employee with the entered data
 function addEmployee(){
     var name = document.getElementById("name").value;
     var username = document.getElementById("username").value;
@@ -85,6 +88,7 @@ function addEmployee(){
         }
     });
 }
+//removes rows. This is a helper method
 function removeEmployeeRows() {
     var list = document.getElementById("employeeTable");
     while (list.hasChildNodes()) {
